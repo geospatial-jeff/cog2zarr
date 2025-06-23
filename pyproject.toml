@@ -22,7 +22,7 @@ dependencies = [
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.2.0"
-ruff = "^0.11.9"
+ruff = "^0.12.0"
 
 [tool.poetry.scripts]
 cog2zarr = "cog_to_zarr.cli:main"

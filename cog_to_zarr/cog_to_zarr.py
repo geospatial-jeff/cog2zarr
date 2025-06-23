@@ -1,18 +1,17 @@
+import shutil
 from collections import defaultdict
 from pathlib import Path
-import shutil
 
 import pystac
+import rioxarray as rxr
 import xarray as xr
 
-import rioxarray as rxr
-
 from cog_to_zarr.types import (
-    GroupLayout,
-    GeoZarrExtensionType,
-    GeoZarrExtension,
     CfConfiguration,
     GdalConfiguration,
+    GeoZarrExtension,
+    GeoZarrExtensionType,
+    GroupLayout,
     StacConfiguration,
 )
 

@@ -6,14 +6,13 @@ import pystac_client
 
 from cog_to_zarr import cog_to_zarr
 from cog_to_zarr.types import (
-    GeoZarrExtension,
     CfConfiguration,
     GdalConfiguration,
-    StacConfiguration,
+    GeoZarrExtension,
     GeoZarrExtensionType,
     GroupLayout,
+    StacConfiguration,
 )
-
 
 STAC_API_BASE_URL = "https://earth-search.aws.element84.com/v1"
 STAC_COLLECTION = "sentinel-2-l2a"
@@ -42,7 +41,9 @@ def create_json_schema(outdir: Path):
 @main.command()
 @click.argument("stac_item_id", type=str)
 @click.argument("out_store", type=click.Path(file_okay=False, path_type=Path))
-@click.option("--extension-type", type=click.Choice(GeoZarrExtensionType), required=True)
+@click.option(
+    "--extension-type", type=click.Choice(GeoZarrExtensionType), required=True
+)
 @click.option("--group-layout", type=click.Choice(GroupLayout), required=True)
 @click.option("--chunk-size-x", type=int, required=True, default=2048)
 @click.option("--chunk-size-y", type=int, required=True, default=2048)

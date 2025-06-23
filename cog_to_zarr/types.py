@@ -1,9 +1,8 @@
 from enum import StrEnum
 from typing import Generic, TypeVar
 
-from pydantic import BaseModel, ConfigDict
 from geojson_pydantic.geometries import Polygon
-
+from pydantic import BaseModel, ConfigDict
 
 ConfigT = TypeVar("ConfigT")
 
