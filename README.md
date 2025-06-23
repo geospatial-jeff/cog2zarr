@@ -64,13 +64,25 @@ The [examples](./examples/) included in the repo were generated with the followi
 
 ```shell
 # First example.
-cog2zarr convert S2A_33UWP_20250620_0_L2A examples/S2A_33UWP_20250620_0_L2A/stac_chunky_simple.zarr --extension-type stac --group-layout chunky --simple
+cog2zarr convert S2A_33UWP_20250620_0_L2A \
+ examples/S2A_33UWP_20250620_0_L2A/stac_chunky_simple.zarr \
+ --extension-type stac \
+ --group-layout chunky \
+ --simple
 
 # Second example.
-cog2zarr convert S2A_33UWP_20250620_0_L2A examples/S2A_33UWP_20250620_0_L2A/cf_planar.zarr --extension-type cf --group-layout planar
+cog2zarr convert \
+ S2A_33UWP_20250620_0_L2A \
+ examples/S2A_33UWP_20250620_0_L2A/cf_planar.zarr \
+ --extension-type cf \
+ --group-layout planar
 
 # Third example.
-cog2zarr convert S2A_33UWP_20250620_0_L2A examples/S2A_33UWP_20250620_0_L2A/gdal_chunky.zarr --extension-type gdal --group-layout chunk
+cog2zarr convert \
+ S2A_33UWP_20250620_0_L2A \
+ examples/S2A_33UWP_20250620_0_L2A/gdal_chunky.zarr \
+ --extension-type gdal \
+ --group-layout chunk
 ```
 
 ## Python Usage
