@@ -1,0 +1,45 @@
+{
+  "attributes": {
+    "geo": {
+      "name": "stac",
+      "configuration": {
+        "band_names": [
+          "aot",
+          "nir08",
+          "rededge1",
+          "rededge2",
+          "rededge3",
+          "scl",
+          "swir16",
+          "swir22",
+          "wvp"
+        ],
+        "group_configuration": "chunky",
+        "proj:wkt": null,
+        "proj:projjson": null,
+        "proj:geometry": null,
+        "proj:bbox": null,
+        "proj:centroid": {
+          "lon": 15.73938,
+          "lat": 48.25592
+        },
+        "proj:code": "EPSG:32633",
+        "proj:shape": [
+          5490,
+          5490
+        ],
+        "proj:transform": [
+          20.0,
+          0.0,
+          499980.0,
+          0.0,
+          -20.0,
+          5400000.0
+        ]
+      }
+    }
+  },
+  "zarr_format": 3,
+  "consolidated_metadata": null,
+  "node_type": "group"
+}

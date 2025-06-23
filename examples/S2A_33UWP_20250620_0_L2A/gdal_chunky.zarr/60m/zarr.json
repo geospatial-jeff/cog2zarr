@@ -1,0 +1,28 @@
+{
+  "attributes": {
+    "geo": {
+      "name": "gdal",
+      "configuration": {
+        "band_names": [
+          "coastal",
+          "nir09"
+        ],
+        "group_configuration": "chunky",
+        "transform": [
+          499980.0,
+          60.0,
+          0.0,
+          5400000.0,
+          0.0,
+          -60.0
+        ],
+        "epsg": "EPSG:32633",
+        "wkt": "PROJCS[\"WGS 84 / UTM zone 33N\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",15],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"32633\"]]",
+        "projjson": "{\"$schema\":\"https://proj.org/schemas/v0.7/projjson.schema.json\",\"type\":\"ProjectedCRS\",\"name\":\"WGS 84 / UTM zone 33N\",\"base_crs\":{\"name\":\"WGS 84\",\"datum\":{\"type\":\"GeodeticReferenceFrame\",\"name\":\"World Geodetic System 1984\",\"ellipsoid\":{\"name\":\"WGS 84\",\"semi_major_axis\":6378137,\"inverse_flattening\":298.257223563}},\"coordinate_system\":{\"subtype\":\"ellipsoidal\",\"axis\":[{\"name\":\"Geodetic latitude\",\"abbreviation\":\"Lat\",\"direction\":\"north\",\"unit\":\"degree\"},{\"name\":\"Geodetic longitude\",\"abbreviation\":\"Lon\",\"direction\":\"east\",\"unit\":\"degree\"}]},\"id\":{\"authority\":\"EPSG\",\"code\":4326}},\"conversion\":{\"name\":\"UTM zone 33N\",\"method\":{\"name\":\"Transverse Mercator\",\"id\":{\"authority\":\"EPSG\",\"code\":9807}},\"parameters\":[{\"name\":\"Latitude of natural origin\",\"value\":0,\"unit\":\"degree\",\"id\":{\"authority\":\"EPSG\",\"code\":8801}},{\"name\":\"Longitude of natural origin\",\"value\":15,\"unit\":\"degree\",\"id\":{\"authority\":\"EPSG\",\"code\":8802}},{\"name\":\"Scale factor at natural origin\",\"value\":0.9996,\"unit\":\"unity\",\"id\":{\"authority\":\"EPSG\",\"code\":8805}},{\"name\":\"False easting\",\"value\":500000,\"unit\":\"metre\",\"id\":{\"authority\":\"EPSG\",\"code\":8806}},{\"name\":\"False northing\",\"value\":0,\"unit\":\"metre\",\"id\":{\"authority\":\"EPSG\",\"code\":8807}}]},\"coordinate_system\":{\"subtype\":\"Cartesian\",\"axis\":[{\"name\":\"Easting\",\"abbreviation\":\"\",\"direction\":\"east\",\"unit\":\"metre\"},{\"name\":\"Northing\",\"abbreviation\":\"\",\"direction\":\"north\",\"unit\":\"metre\"}]},\"id\":{\"authority\":\"EPSG\",\"code\":32633}}"
+      }
+    }
+  },
+  "zarr_format": 3,
+  "consolidated_metadata": null,
+  "node_type": "group"
+}

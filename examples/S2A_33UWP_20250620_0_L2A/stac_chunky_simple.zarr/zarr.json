@@ -1,0 +1,335 @@
+{
+  "attributes": {},
+  "zarr_format": 3,
+  "consolidated_metadata": {
+    "kind": "inline",
+    "must_understand": false,
+    "metadata": {
+      "10m": {
+        "attributes": {
+          "geo": {
+            "name": "stac",
+            "configuration": {
+              "band_names": [
+                "red",
+                "green",
+                "blue",
+                "nir"
+              ],
+              "group_configuration": "chunky",
+              "proj:wkt": null,
+              "proj:projjson": null,
+              "proj:geometry": null,
+              "proj:bbox": null,
+              "proj:centroid": {
+                "lon": 15.73938,
+                "lat": 48.25592
+              },
+              "proj:code": "EPSG:32633",
+              "proj:shape": [
+                10980,
+                10980
+              ],
+              "proj:transform": [
+                10.0,
+                0.0,
+                499980.0,
+                0.0,
+                -10.0,
+                5400000.0
+              ]
+            }
+          }
+        },
+        "zarr_format": 3,
+        "consolidated_metadata": {
+          "kind": "inline",
+          "must_understand": false,
+          "metadata": {}
+        },
+        "node_type": "group"
+      },
+      "10m/data": {
+        "shape": [
+          4,
+          10980,
+          10980
+        ],
+        "data_type": "uint16",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              1,
+              2048,
+              2048
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": 0,
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "AREA_OR_POINT": "Area",
+          "OVR_RESAMPLING_ALG": "AVERAGE",
+          "scale_factor": 1.0,
+          "add_offset": 0.0,
+          "_asset_names": [
+            "red",
+            "green",
+            "blue",
+            "nir"
+          ],
+          "grid_mapping": "spatial_ref",
+          "_FillValue": 0
+        },
+        "dimension_names": [
+          "band",
+          "y",
+          "x"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "60m": {
+        "attributes": {
+          "geo": {
+            "name": "stac",
+            "configuration": {
+              "band_names": [
+                "coastal",
+                "nir09"
+              ],
+              "group_configuration": "chunky",
+              "proj:wkt": null,
+              "proj:projjson": null,
+              "proj:geometry": null,
+              "proj:bbox": null,
+              "proj:centroid": {
+                "lon": 15.73938,
+                "lat": 48.25592
+              },
+              "proj:code": "EPSG:32633",
+              "proj:shape": [
+                1830,
+                1830
+              ],
+              "proj:transform": [
+                60.0,
+                0.0,
+                499980.0,
+                0.0,
+                -60.0,
+                5400000.0
+              ]
+            }
+          }
+        },
+        "zarr_format": 3,
+        "consolidated_metadata": {
+          "kind": "inline",
+          "must_understand": false,
+          "metadata": {}
+        },
+        "node_type": "group"
+      },
+      "60m/data": {
+        "shape": [
+          2,
+          1830,
+          1830
+        ],
+        "data_type": "uint16",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              1,
+              1830,
+              1830
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": 0,
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "AREA_OR_POINT": "Area",
+          "OVR_RESAMPLING_ALG": "AVERAGE",
+          "scale_factor": 1.0,
+          "add_offset": 0.0,
+          "_asset_names": [
+            "coastal",
+            "nir09"
+          ],
+          "grid_mapping": "spatial_ref",
+          "_FillValue": 0
+        },
+        "dimension_names": [
+          "band",
+          "y",
+          "x"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "20m": {
+        "attributes": {
+          "geo": {
+            "name": "stac",
+            "configuration": {
+              "band_names": [
+                "aot",
+                "nir08",
+                "rededge1",
+                "rededge2",
+                "rededge3",
+                "scl",
+                "swir16",
+                "swir22",
+                "wvp"
+              ],
+              "group_configuration": "chunky",
+              "proj:wkt": null,
+              "proj:projjson": null,
+              "proj:geometry": null,
+              "proj:bbox": null,
+              "proj:centroid": {
+                "lon": 15.73938,
+                "lat": 48.25592
+              },
+              "proj:code": "EPSG:32633",
+              "proj:shape": [
+                5490,
+                5490
+              ],
+              "proj:transform": [
+                20.0,
+                0.0,
+                499980.0,
+                0.0,
+                -20.0,
+                5400000.0
+              ]
+            }
+          }
+        },
+        "zarr_format": 3,
+        "consolidated_metadata": {
+          "kind": "inline",
+          "must_understand": false,
+          "metadata": {}
+        },
+        "node_type": "group"
+      },
+      "20m/data": {
+        "shape": [
+          9,
+          16470,
+          16470
+        ],
+        "data_type": "uint16",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              1,
+              1830,
+              1830
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": 0,
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "AREA_OR_POINT": "Area",
+          "OVR_RESAMPLING_ALG": "MODE",
+          "scale_factor": 1.0,
+          "add_offset": 0.0,
+          "_asset_names": [
+            "aot",
+            "nir08",
+            "rededge1",
+            "rededge2",
+            "rededge3",
+            "scl",
+            "swir16",
+            "swir22",
+            "wvp"
+          ],
+          "grid_mapping": "spatial_ref",
+          "_FillValue": 0
+        },
+        "dimension_names": [
+          "band",
+          "y",
+          "x"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      }
+    }
+  },
+  "node_type": "group"
+}
