@@ -1,6 +1,6 @@
 # cog2zarr
 
-TIFF to Zarr translator library which proposes a new `geo` Zarr v3 extension (see [here](https://zarr-specs.readthedocs.io/en/latest/v3/core/index.html#extensions)).  The extension currently supports several different configurations / encodings of georeferencing information (affine transform + CRS):
+TIFF to Zarr translator library which proposes a new `geo` Zarr v3 [extension](https://zarr-specs.readthedocs.io/en/latest/v3/core/index.html#extensions).  The extension currently supports several different configurations / encodings of georeferencing information (affine transform + CRS):
 - CF conventions (via `rioxarray`).
 - GDAL raster data model (via `rioxarray`).
 - STAC proj extension (via `pystac`).
@@ -9,7 +9,7 @@ TIFF to Zarr translator library which proposes a new `geo` Zarr v3 extension (se
 Refer to the [jsonschemas](./jsonschemas/) directory for JSON schemas, or the pydantic models [here](./cog_to_zarr/types.py) for more information on each configuration.  See the [examples](./examples) for various examples from a Sentinel2 [STAC item](https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_33UWP_20250620_0_L2A).
 
 **Caveats:**
-- Only works on STAC items from the `sentinel-2-l2a` EarthSearch collection (`https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a`).  It may work on Microsoft PC but I haven't tested this yet.
+- Only works on STAC items from the `sentinel-2-l2a` EarthSearch collection (https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a).  It may work on Microsoft PC but I haven't tested this yet.
 - Ignores georectification / georeferencing edge-cases such as RPCs and GRPCs.  The code assumes the image has an affine transform + CRS information.
 - The `geo` zarr extension is stored in the `attributes` key of each zarr group.  Zarr extensions are supposed to be stored at the top level of the zarr group, however `zarr-python` doesn't support this.
 
