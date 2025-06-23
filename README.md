@@ -11,7 +11,7 @@ Refer to the [jsonschemas](./jsonschemas/) directory for JSON schemas, or the py
 **Caveats:**
 - Only works on STAC items from the `sentinel-2-l2a` EarthSearch collection (https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a).  It may work on Microsoft PC but I haven't tested this yet.
 - Ignores georectification / georeferencing edge-cases such as RPCs and GRPCs.  The code assumes the image has an affine transform + CRS information, which is true for the large majority of TIFFs found in the wild.
-- The `geo` zarr extension is stored in the `attributes` key of each zarr group.  Zarr extensions are supposed to be stored at the top level of the zarr group, however `zarr-python` doesn't support this.
+- The `geo` zarr extension is stored in the `attributes` key of each zarr group (`node_type = 'group'`).  Zarr extensions are supposed to be stored at the top level of the zarr group, however `zarr-python` doesn't support this.
 
 
 ## Usage
