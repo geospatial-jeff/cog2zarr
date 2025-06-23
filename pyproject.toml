@@ -1,0 +1,32 @@
+[project]
+name = "cog_to_zarr"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Jeff Albrecht",email = "geospatialjeff@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4"
+dependencies = [
+    "click (>=8.2.1,<9.0.0)",
+    "xarray (>=2025.6.1,<2026.0.0)",
+    "rioxarray (>=0.19.0,<0.20.0)",
+    "pystac (>=1.13.0,<2.0.0)",
+    "pystac-client (>=0.8.6,<0.9.0)",
+    "pydantic (>=2.11.7,<3.0.0)",
+    "geojson-pydantic (>=2.0.0,<3.0.0)",
+    "dask (>=2025.5.1,<2026.0.0)",
+]
+
+[tool.poetry]
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.2.0"
+ruff = "^0.11.9"
+
+[tool.poetry.scripts]
+cog2zarr = "cog_to_zarr.cli:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

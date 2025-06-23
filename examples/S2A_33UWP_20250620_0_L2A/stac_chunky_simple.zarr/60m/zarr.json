@@ -1,0 +1,38 @@
+{
+  "attributes": {
+    "geo": {
+      "name": "stac",
+      "configuration": {
+        "band_names": [
+          "coastal",
+          "nir09"
+        ],
+        "group_configuration": "chunky",
+        "proj:wkt": null,
+        "proj:projjson": null,
+        "proj:geometry": null,
+        "proj:bbox": null,
+        "proj:centroid": {
+          "lon": 15.73938,
+          "lat": 48.25592
+        },
+        "proj:code": "EPSG:32633",
+        "proj:shape": [
+          1830,
+          1830
+        ],
+        "proj:transform": [
+          60.0,
+          0.0,
+          499980.0,
+          0.0,
+          -60.0,
+          5400000.0
+        ]
+      }
+    }
+  },
+  "zarr_format": 3,
+  "consolidated_metadata": null,
+  "node_type": "group"
+}

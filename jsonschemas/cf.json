@@ -1,0 +1,146 @@
+{
+  "$defs": {
+    "CfConfiguration": {
+      "properties": {
+        "band_names": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Band Names",
+          "type": "array"
+        },
+        "group_configuration": {
+          "$ref": "#/$defs/GroupLayout"
+        },
+        "crs_wkt": {
+          "title": "Crs Wkt",
+          "type": "string"
+        },
+        "semi_major_axis": {
+          "title": "Semi Major Axis",
+          "type": "number"
+        },
+        "semi_minor_axis": {
+          "title": "Semi Minor Axis",
+          "type": "number"
+        },
+        "inverse_flattening": {
+          "title": "Inverse Flattening",
+          "type": "number"
+        },
+        "reference_ellipsoid_name": {
+          "title": "Reference Ellipsoid Name",
+          "type": "string"
+        },
+        "longitude_of_prime_meridian": {
+          "title": "Longitude Of Prime Meridian",
+          "type": "number"
+        },
+        "prime_meridian_name": {
+          "title": "Prime Meridian Name",
+          "type": "string"
+        },
+        "geographic_crs_name": {
+          "title": "Geographic Crs Name",
+          "type": "string"
+        },
+        "horizontal_datum_name": {
+          "title": "Horizontal Datum Name",
+          "type": "string"
+        },
+        "projected_crs_name": {
+          "title": "Projected Crs Name",
+          "type": "string"
+        },
+        "grid_mapping_name": {
+          "title": "Grid Mapping Name",
+          "type": "string"
+        },
+        "latitude_of_projection_origin": {
+          "title": "Latitude Of Projection Origin",
+          "type": "number"
+        },
+        "longitude_of_central_meridian": {
+          "title": "Longitude Of Central Meridian",
+          "type": "number"
+        },
+        "false_easting": {
+          "title": "False Easting",
+          "type": "number"
+        },
+        "false_northing": {
+          "title": "False Northing",
+          "type": "number"
+        },
+        "scale_factor_at_central_meridian": {
+          "title": "Scale Factor At Central Meridian",
+          "type": "number"
+        },
+        "spatial_ref": {
+          "title": "Spatial Ref",
+          "type": "string"
+        },
+        "GeoTransform": {
+          "title": "Geotransform",
+          "type": "string"
+        }
+      },
+      "required": [
+        "band_names",
+        "group_configuration",
+        "crs_wkt",
+        "semi_major_axis",
+        "semi_minor_axis",
+        "inverse_flattening",
+        "reference_ellipsoid_name",
+        "longitude_of_prime_meridian",
+        "prime_meridian_name",
+        "geographic_crs_name",
+        "horizontal_datum_name",
+        "projected_crs_name",
+        "grid_mapping_name",
+        "latitude_of_projection_origin",
+        "longitude_of_central_meridian",
+        "false_easting",
+        "false_northing",
+        "scale_factor_at_central_meridian",
+        "spatial_ref",
+        "GeoTransform"
+      ],
+      "title": "CfConfiguration",
+      "type": "object"
+    },
+    "GeoZarrExtensionType": {
+      "enum": [
+        "stac",
+        "gdal",
+        "cf",
+        "geotiff"
+      ],
+      "title": "GeoZarrExtensionType",
+      "type": "string"
+    },
+    "GroupLayout": {
+      "enum": [
+        "planar",
+        "chunky"
+      ],
+      "title": "GroupLayout",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "name": {
+      "$ref": "#/$defs/GeoZarrExtensionType"
+    },
+    "configuration": {
+      "$ref": "#/$defs/CfConfiguration"
+    }
+  },
+  "required": [
+    "name",
+    "configuration"
+  ],
+  "title": "GeoZarrExtension[CfConfiguration]",
+  "type": "object"
+}

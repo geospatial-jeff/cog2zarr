@@ -1,0 +1,79 @@
+{
+  "$defs": {
+    "GdalConfiguration": {
+      "properties": {
+        "band_names": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Band Names",
+          "type": "array"
+        },
+        "group_configuration": {
+          "$ref": "#/$defs/GroupLayout"
+        },
+        "transform": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Transform",
+          "type": "array"
+        },
+        "epsg": {
+          "title": "Epsg",
+          "type": "string"
+        },
+        "wkt": {
+          "title": "Wkt",
+          "type": "string"
+        },
+        "projjson": {
+          "title": "Projjson",
+          "type": "string"
+        }
+      },
+      "required": [
+        "band_names",
+        "group_configuration",
+        "transform",
+        "epsg",
+        "wkt",
+        "projjson"
+      ],
+      "title": "GdalConfiguration",
+      "type": "object"
+    },
+    "GeoZarrExtensionType": {
+      "enum": [
+        "stac",
+        "gdal",
+        "cf",
+        "geotiff"
+      ],
+      "title": "GeoZarrExtensionType",
+      "type": "string"
+    },
+    "GroupLayout": {
+      "enum": [
+        "planar",
+        "chunky"
+      ],
+      "title": "GroupLayout",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "name": {
+      "$ref": "#/$defs/GeoZarrExtensionType"
+    },
+    "configuration": {
+      "$ref": "#/$defs/GdalConfiguration"
+    }
+  },
+  "required": [
+    "name",
+    "configuration"
+  ],
+  "title": "GeoZarrExtension[GdalConfiguration]",
+  "type": "object"
+}

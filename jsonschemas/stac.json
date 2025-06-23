@@ -1,0 +1,292 @@
+{
+  "$defs": {
+    "Centroid": {
+      "properties": {
+        "lon": {
+          "title": "Lon",
+          "type": "number"
+        },
+        "lat": {
+          "title": "Lat",
+          "type": "number"
+        }
+      },
+      "required": [
+        "lon",
+        "lat"
+      ],
+      "title": "Centroid",
+      "type": "object"
+    },
+    "GeoZarrExtensionType": {
+      "enum": [
+        "stac",
+        "gdal",
+        "cf",
+        "geotiff"
+      ],
+      "title": "GeoZarrExtensionType",
+      "type": "string"
+    },
+    "GroupLayout": {
+      "enum": [
+        "planar",
+        "chunky"
+      ],
+      "title": "GroupLayout",
+      "type": "string"
+    },
+    "Polygon": {
+      "description": "Polygon Model",
+      "properties": {
+        "bbox": {
+          "anyOf": [
+            {
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "maxItems": 6,
+              "minItems": 6,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bbox"
+        },
+        "type": {
+          "const": "Polygon",
+          "title": "Type",
+          "type": "string"
+        },
+        "coordinates": {
+          "items": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Position2D"
+                },
+                {
+                  "$ref": "#/$defs/Position3D"
+                }
+              ]
+            },
+            "minItems": 4,
+            "type": "array"
+          },
+          "title": "Coordinates",
+          "type": "array"
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "title": "Polygon",
+      "type": "object"
+    },
+    "Position2D": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "title": "Longitude",
+          "type": "number"
+        },
+        {
+          "title": "Latitude",
+          "type": "number"
+        }
+      ],
+      "type": "array"
+    },
+    "Position3D": {
+      "maxItems": 3,
+      "minItems": 3,
+      "prefixItems": [
+        {
+          "title": "Longitude",
+          "type": "number"
+        },
+        {
+          "title": "Latitude",
+          "type": "number"
+        },
+        {
+          "title": "Altitude",
+          "type": "number"
+        }
+      ],
+      "type": "array"
+    },
+    "StacConfiguration": {
+      "properties": {
+        "band_names": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Band Names",
+          "type": "array"
+        },
+        "group_configuration": {
+          "$ref": "#/$defs/GroupLayout"
+        },
+        "proj:wkt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Proj:Wkt"
+        },
+        "proj:projjson": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Proj:Projjson"
+        },
+        "proj:geometry": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Polygon"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "proj:bbox": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Proj:Bbox"
+        },
+        "proj:centroid": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Centroid"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "proj:code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Proj:Code"
+        },
+        "proj:shape": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Proj:Shape",
+          "type": "array"
+        },
+        "proj:transform": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Proj:Transform",
+          "type": "array"
+        }
+      },
+      "required": [
+        "band_names",
+        "group_configuration",
+        "proj:code",
+        "proj:shape",
+        "proj:transform"
+      ],
+      "title": "StacConfiguration",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "name": {
+      "$ref": "#/$defs/GeoZarrExtensionType"
+    },
+    "configuration": {
+      "$ref": "#/$defs/StacConfiguration"
+    }
+  },
+  "required": [
+    "name",
+    "configuration"
+  ],
+  "title": "GeoZarrExtension[StacConfiguration]",
+  "type": "object"
+}
