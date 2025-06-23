@@ -90,6 +90,9 @@ cog2zarr convert \
 You may also call this library through python, see the example below:
 
 ```python
+from datetime import date
+from pathlib import Path
+
 import pystac_client
 
 from cog_to_zarr import cog_to_zarr
@@ -123,3 +126,4 @@ cog_to_zarr.convert(
     configuration=GroupLayout.chunky,
     simple=True
 )
+```
