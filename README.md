@@ -1,6 +1,6 @@
  cog2zarr
 
-TIFF to Zarr translator library which proposes a new `geo` Zarr v3 extension.  The extension currently supports several different configurations / encodings of georeferencing information (affine transform + CRS):
+TIFF to Zarr translator library which proposes a new `geo` Zarr v3 extension (see [here](https://zarr-specs.readthedocs.io/en/latest/v3/core/index.html#extensions)).  The extension currently supports several different configurations / encodings of georeferencing information (affine transform + CRS):
 - CF conventions (via `rioxarray`).
 - GDAL raster data model (via `rioxarray`).
 - STAC proj extension (via `pystac`).
