@@ -123,7 +123,7 @@ cog_to_zarr.convert(
     item,
     Path("output.zarr"),
     extension_type=GeoZarrExtensionType.stac,
-    configuration=GroupLayout.chunky,
+    group_layout=GroupLayout.chunky,
     simple=True
 )
 ```
