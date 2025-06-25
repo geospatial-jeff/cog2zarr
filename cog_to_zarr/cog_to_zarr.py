@@ -4,20 +4,20 @@ from collections import defaultdict
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from async_tiff.store import HTTPStore
-from async_tiff import TIFF
 import pystac
 import rioxarray as rxr
 import xarray as xr
+from async_tiff import TIFF
+from async_tiff.store import HTTPStore
 
 from cog_to_zarr.types import (
     CfConfiguration,
     GdalConfiguration,
+    GeoTiffConfiguration,
     GeoZarrExtension,
     GeoZarrExtensionType,
     GroupLayout,
     StacConfiguration,
-    GeoTiffConfiguration
 )
 
 
@@ -178,7 +178,7 @@ def _create_geotiff_geo_extension(
         for m in dir(ifd.geo_key_directory)
         if not m.startswith("__")
     }
-    
+
     kls = GeoZarrExtension[GeoTiffConfiguration]
     return kls.model_validate(
         {
@@ -189,12 +189,9 @@ def _create_geotiff_geo_extension(
                 "model_pixel_scale": ifd.model_pixel_scale,
                 "band_names": da._asset_names,
                 "group_configuration": group_configuration.value,
-            }
+            },
         }
     )
-
-    
-
 
 
 def _pick_geo_extension(

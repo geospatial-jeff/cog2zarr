@@ -32,7 +32,7 @@ def create_json_schema(outdir: Path):
         GeoZarrExtensionType.cf: CfConfiguration,
         GeoZarrExtensionType.gdal: GdalConfiguration,
         GeoZarrExtensionType.stac: StacConfiguration,
-        GeoZarrExtensionType.geotiff: GeoTiffConfiguration
+        GeoZarrExtensionType.geotiff: GeoTiffConfiguration,
     }
     for name, config in configs.items():
         json_schema = GeoZarrExtension[config].model_json_schema()
