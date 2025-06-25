@@ -1,7 +1,11 @@
+import asyncio
 import shutil
 from collections import defaultdict
 from pathlib import Path
+from urllib.parse import urlsplit
 
+from async_tiff.store import HTTPStore
+from async_tiff import TIFF
 import pystac
 import rioxarray as rxr
 import xarray as xr
@@ -13,6 +17,7 @@ from cog_to_zarr.types import (
     GeoZarrExtensionType,
     GroupLayout,
     StacConfiguration,
+    GeoTiffConfiguration
 )
 
 
@@ -150,6 +155,48 @@ def _create_cf_geo_extension(
     )
 
 
+def _create_geotiff_geo_extension(
+    item: pystac.Item, da: xr.DataArray, group_configuration: GroupLayout
+) -> GeoZarrExtension[GeoTiffConfiguration]:
+    href = item.assets[da._asset_names[0]].href
+
+    async def _get_tiff_header(http_url: str) -> TIFF:
+        splits = urlsplit(http_url)
+
+        # It's bad to recreate store on every request but
+        # I don't really care for now.
+        store = HTTPStore.from_url(f"{splits.scheme}://{splits.netloc}")
+        tiff = await TIFF.open(splits.path, store=store, prefetch=2**32)
+        return tiff
+
+    tiff = asyncio.run(_get_tiff_header(href))
+
+    # Geotiff tags are only on the first ifd
+    ifd = tiff.ifds[0]
+    geokeys = {
+        m: getattr(ifd.geo_key_directory, m)
+        for m in dir(ifd.geo_key_directory)
+        if not m.startswith("__")
+    }
+    
+    kls = GeoZarrExtension[GeoTiffConfiguration]
+    return kls.model_validate(
+        {
+            "name": "geotiff",
+            "configuration": {
+                **geokeys,
+                "model_tiepoint": ifd.model_tiepoint,
+                "model_pixel_scale": ifd.model_pixel_scale,
+                "band_names": da._asset_names,
+                "group_configuration": group_configuration.value,
+            }
+        }
+    )
+
+    
+
+
+
 def _pick_geo_extension(
     item: pystac.Item,
     da: xr.DataArray,
@@ -164,7 +211,7 @@ def _pick_geo_extension(
         case GeoZarrExtensionType.cf:
             return _create_cf_geo_extension(item, da, configuration)
         case GeoZarrExtensionType.geotiff:
-            raise NotImplementedError
+            return _create_geotiff_geo_extension(item, da, configuration)
         case _:
             raise ValueError("Unrecognized extension type")
 

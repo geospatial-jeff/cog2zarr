@@ -1,0 +1,82 @@
+{
+  "attributes": {
+    "geo": {
+      "name": "geotiff",
+      "configuration": {
+        "band_names": [
+          "aot",
+          "nir08",
+          "rededge1",
+          "rededge2",
+          "rededge3",
+          "scl",
+          "swir16",
+          "swir22",
+          "wvp"
+        ],
+        "group_configuration": "chunky",
+        "citation": "WGS 84 / UTM zone 33N",
+        "geog_angular_unit_size": null,
+        "geog_angular_units": 9102,
+        "geog_azimuth_units": null,
+        "geog_citation": "WGS 84",
+        "geog_ellipsoid": null,
+        "geog_geodetic_datum": null,
+        "geog_inv_flattening": null,
+        "geog_linear_unit_size": null,
+        "geog_linear_units": null,
+        "geog_prime_meridian": null,
+        "geog_prime_meridian_long": null,
+        "geog_semi_major_axis": null,
+        "geog_semi_minor_axis": null,
+        "geographic_type": null,
+        "model_type": 1,
+        "proj_azimuth_angle": null,
+        "proj_center_easting": null,
+        "proj_center_lat": null,
+        "proj_center_long": null,
+        "proj_center_northing": null,
+        "proj_citation": null,
+        "proj_coord_trans": null,
+        "proj_false_easting": null,
+        "proj_false_northing": null,
+        "proj_false_origin_easting": null,
+        "proj_false_origin_lat": null,
+        "proj_false_origin_long": null,
+        "proj_false_origin_northing": null,
+        "proj_linear_unit_size": null,
+        "proj_linear_units": 9001,
+        "proj_nat_origin_lat": null,
+        "proj_nat_origin_long": null,
+        "proj_scale_at_center": null,
+        "proj_scale_at_nat_origin": null,
+        "proj_std_parallel1": null,
+        "proj_std_parallel2": null,
+        "proj_straight_vert_pole_long": null,
+        "projected_type": 32633,
+        "projection": null,
+        "raster_type": 1,
+        "vertical": null,
+        "vertical_citation": null,
+        "vertical_datum": null,
+        "vertical_units": null,
+        "model_tiepoint": [
+          0.0,
+          0.0,
+          0.0,
+          499980.0,
+          5400000.0,
+          0.0
+        ],
+        "model_pixel_scale": [
+          60.0,
+          60.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "zarr_format": 3,
+  "consolidated_metadata": null,
+  "node_type": "group"
+}
