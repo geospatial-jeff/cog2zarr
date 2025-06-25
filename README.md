@@ -4,7 +4,7 @@ TIFF to Zarr translator library which proposes a new `geo` Zarr v3 [extension](h
 - CF conventions (via `rioxarray`).
 - GDAL raster data model (via `rioxarray`).
 - STAC proj extension (via `pystac`).
-- GeoTIFF (via `async-tiff`).  **Not implemented yet.**
+- GeoTIFF (via `async-tiff`).
 
 Refer to the [jsonschemas](./jsonschemas/) directory for JSON schemas, or the pydantic models [here](./cog_to_zarr/types.py) for more information on each configuration.  See the [examples](./examples) for various examples from a Sentinel2 [STAC item](https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_33UWP_20250620_0_L2A).
 
