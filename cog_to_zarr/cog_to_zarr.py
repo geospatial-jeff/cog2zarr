@@ -25,7 +25,7 @@ def _stac_to_xarray(
     stac_item: pystac.Item,
     chunk_size_x: int,
     chunk_size_y: int,
-    consolidate_bands: bool = False,
+    group_layout: GroupLayout,
 ) -> dict[str, xr.DataArray]:
     """Convert a STAC item into xarray datasets by parsing each TIFF asset.  Return a dictionary where
     each key/value pair represents a single Zarr group where the key is the name of the group and the value
@@ -33,12 +33,11 @@ def _stac_to_xarray(
     into a normalized format that is easier to work with.  This will probably only work on STAC items from
     https://earth-search.aws.element84.com/v1/sentinel-2-l2a
 
-    When `consolidate_bands = False` this function will create one group for each asset in the STAC item:
+    `GroupLayout.planar` will create one group for each asset in the STAC item:
 
         {'red': <xr.DataArray>, 'blue', <xr.DataArray>, ...}
 
-    When `consolidate_bands = True` this function will concatenate bands with similar spatial resolution into
-    individual groups:
+    `GroupLayout.chunky` will concatenate bands with similar spatial resolution into individual groups:
 
         {'10m': <xr.DataArray>, '20m': xr.DataArray, '60m': xr.DataArray}
 
@@ -62,7 +61,7 @@ def _stac_to_xarray(
         da.attrs["_asset_names"] = [name]
         datasets[name] = da
 
-    if consolidate_bands:
+    if group_layout == GroupLayout.chunky:
         # Stack bands with similar spatial resolution.
         grouped_datasets = defaultdict(list)
         grouped_asset_names = defaultdict(list)
@@ -212,22 +211,11 @@ def _pick_geo_extension(
         case _:
             raise ValueError("Unrecognized extension type")
 
-
-def _pick_group_configuration(configuration: GroupLayout) -> bool:
-    match configuration:
-        case GroupLayout.planar:
-            return False
-        case GroupLayout.chunky:
-            return True
-        case _:
-            raise ValueError("Unrecognized group configuration")
-
-
 def convert(
     item: pystac.Item,
     store_path: Path,
     extension_type: GeoZarrExtensionType,
-    configuration: GroupLayout = GroupLayout.chunky,
+    group_layout: GroupLayout = GroupLayout.chunky,
     chunk_size_x: int = 2048,
     chunk_size_y: int = 2048,
     simple: bool = False,
@@ -235,14 +223,13 @@ def convert(
     if store_path.exists():
         shutil.rmtree(store_path)
 
-    consolidate_bands = _pick_group_configuration(configuration)
-    data_arrays = _stac_to_xarray(item, chunk_size_x, chunk_size_y, consolidate_bands)
+    data_arrays = _stac_to_xarray(item, chunk_size_x, chunk_size_y, group_layout)
     for group_name, da in data_arrays.items():
         ds = da.to_dataset(name="data")
 
         # Store the `geo` extension in the group `attributes`.  Extensions should technically
         # be stored at the top level of the group but `zarr-python` doesn't support this.
-        geo_metadata = _pick_geo_extension(item, da, extension_type, configuration)
+        geo_metadata = _pick_geo_extension(item, da, extension_type, group_layout)
         ds.attrs.update({"geo": geo_metadata.model_dump(by_alias=True)})
 
         # Drop additional coordinate variables included by rioxarray.  These are already covered
