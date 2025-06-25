@@ -80,3 +80,53 @@ class StacConfiguration(_GeoZarrConfiguration):
     code: str | None
     shape: tuple[int, int]
     transform: list[float]
+
+
+class GeoTiffConfiguration(_GeoZarrConfiguration):
+    citation: str | None
+    geog_angular_unit_size: float | None
+    geog_angular_units: int | None
+    geog_azimuth_units: int | None
+    geog_citation: str | None
+    geog_ellipsoid: int | None
+    geog_geodetic_datum: int | None
+    geog_inv_flattening: float | None
+    geog_linear_unit_size: float | None
+    geog_linear_units: int | None
+    geog_prime_meridian: int | None
+    geog_prime_meridian_long: float | None
+    geog_semi_major_axis: float | None
+    geog_semi_minor_axis: float | None
+    geographic_type: int | None
+    model_type: int | None
+    proj_azimuth_angle: float | None
+    proj_center_easting: float | None
+    proj_center_lat: float | None
+    proj_center_long: float | None
+    proj_center_northing: float | None
+    proj_citation: str | None
+    proj_coord_trans: int | None
+    proj_false_easting: float | None
+    proj_false_northing: float | None
+    proj_false_origin_easting: float | None
+    proj_false_origin_lat: float | None
+    proj_false_origin_long: float | None
+    proj_false_origin_northing: float | None
+    proj_linear_unit_size: float | None
+    proj_linear_units: int | None
+    proj_nat_origin_lat: float | None
+    proj_nat_origin_long: float | None
+    proj_scale_at_center: float | None
+    proj_scale_at_nat_origin: float | None
+    proj_std_parallel1: float | None
+    proj_std_parallel2: float | None
+    proj_straight_vert_pole_long: float | None
+    projected_type: int | None
+    projection: int | None
+    raster_type: int | None
+    vertical: int | None
+    vertical_citation: str | None
+    vertical_datum: int | None
+    vertical_units: int | None
+    model_tiepoint: list[float] | None
+    model_pixel_scale: list[float] | None
