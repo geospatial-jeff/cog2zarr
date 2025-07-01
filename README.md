@@ -18,6 +18,10 @@ Refer to the [jsonschemas](./jsonschemas/) directory for JSON schemas, or the py
 ## Usage
 
 ```shell
+pip install cog_to_zarr
+```
+
+```shell
 git clone https://github.com/geospatial-jeff/cog2zarr
 pip install poetry==2.1.3
 poetry install
