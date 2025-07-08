@@ -133,5 +133,5 @@ class GeoTiffConfiguration(_GeoZarrConfiguration):
     model_pixel_scale: list[float] | None
 
 
-class GeoZarrGroup(GroupSpec, Generic[TAttr, TItem, ConfigT]):
+class GeoZarrGroup(BaseModel, Generic[ConfigT]):
     geo: GeoZarrExtension[ConfigT]
