@@ -28,6 +28,22 @@
       "title": "GeoZarrExtensionType",
       "type": "string"
     },
+    "GeoZarrExtension_StacConfiguration_": {
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/GeoZarrExtensionType"
+        },
+        "configuration": {
+          "$ref": "#/$defs/StacConfiguration"
+        }
+      },
+      "required": [
+        "name",
+        "configuration"
+      ],
+      "title": "GeoZarrExtension[StacConfiguration]",
+      "type": "object"
+    },
     "GroupLayout": {
       "enum": [
         "planar",
@@ -276,17 +292,13 @@
     }
   },
   "properties": {
-    "name": {
-      "$ref": "#/$defs/GeoZarrExtensionType"
-    },
-    "configuration": {
-      "$ref": "#/$defs/StacConfiguration"
+    "geo": {
+      "$ref": "#/$defs/GeoZarrExtension_StacConfiguration_"
     }
   },
   "required": [
-    "name",
-    "configuration"
+    "geo"
   ],
-  "title": "GeoZarrExtension[StacConfiguration]",
+  "title": "GeoZarrGroup[StacConfiguration]",
   "type": "object"
 }

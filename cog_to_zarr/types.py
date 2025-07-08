@@ -3,6 +3,7 @@ from typing import Generic, TypeVar
 
 from geojson_pydantic.geometries import Polygon
 from pydantic import BaseModel, ConfigDict
+from pydantic_zarr.v3 import GroupSpec, TAttr, TItem
 
 ConfigT = TypeVar("ConfigT")
 
@@ -130,3 +131,7 @@ class GeoTiffConfiguration(_GeoZarrConfiguration):
     vertical_units: int | None
     model_tiepoint: list[float] | None
     model_pixel_scale: list[float] | None
+
+
+class GeoZarrGroup(BaseModel, Generic[ConfigT]):
+    geo: GeoZarrExtension[ConfigT]

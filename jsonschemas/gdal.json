@@ -53,6 +53,22 @@
       "title": "GeoZarrExtensionType",
       "type": "string"
     },
+    "GeoZarrExtension_GdalConfiguration_": {
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/GeoZarrExtensionType"
+        },
+        "configuration": {
+          "$ref": "#/$defs/GdalConfiguration"
+        }
+      },
+      "required": [
+        "name",
+        "configuration"
+      ],
+      "title": "GeoZarrExtension[GdalConfiguration]",
+      "type": "object"
+    },
     "GroupLayout": {
       "enum": [
         "planar",
@@ -63,17 +79,13 @@
     }
   },
   "properties": {
-    "name": {
-      "$ref": "#/$defs/GeoZarrExtensionType"
-    },
-    "configuration": {
-      "$ref": "#/$defs/GdalConfiguration"
+    "geo": {
+      "$ref": "#/$defs/GeoZarrExtension_GdalConfiguration_"
     }
   },
   "required": [
-    "name",
-    "configuration"
+    "geo"
   ],
-  "title": "GeoZarrExtension[GdalConfiguration]",
+  "title": "GeoZarrGroup[GdalConfiguration]",
   "type": "object"
 }

@@ -600,6 +600,22 @@
       "title": "GeoZarrExtensionType",
       "type": "string"
     },
+    "GeoZarrExtension_GeoTiffConfiguration_": {
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/GeoZarrExtensionType"
+        },
+        "configuration": {
+          "$ref": "#/$defs/GeoTiffConfiguration"
+        }
+      },
+      "required": [
+        "name",
+        "configuration"
+      ],
+      "title": "GeoZarrExtension[GeoTiffConfiguration]",
+      "type": "object"
+    },
     "GroupLayout": {
       "enum": [
         "planar",
@@ -610,17 +626,13 @@
     }
   },
   "properties": {
-    "name": {
-      "$ref": "#/$defs/GeoZarrExtensionType"
-    },
-    "configuration": {
-      "$ref": "#/$defs/GeoTiffConfiguration"
+    "geo": {
+      "$ref": "#/$defs/GeoZarrExtension_GeoTiffConfiguration_"
     }
   },
   "required": [
-    "name",
-    "configuration"
+    "geo"
   ],
-  "title": "GeoZarrExtension[GeoTiffConfiguration]",
+  "title": "GeoZarrGroup[GeoTiffConfiguration]",
   "type": "object"
 }

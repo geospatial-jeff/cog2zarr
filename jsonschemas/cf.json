@@ -120,6 +120,22 @@
       "title": "GeoZarrExtensionType",
       "type": "string"
     },
+    "GeoZarrExtension_CfConfiguration_": {
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/GeoZarrExtensionType"
+        },
+        "configuration": {
+          "$ref": "#/$defs/CfConfiguration"
+        }
+      },
+      "required": [
+        "name",
+        "configuration"
+      ],
+      "title": "GeoZarrExtension[CfConfiguration]",
+      "type": "object"
+    },
     "GroupLayout": {
       "enum": [
         "planar",
@@ -130,17 +146,13 @@
     }
   },
   "properties": {
-    "name": {
-      "$ref": "#/$defs/GeoZarrExtensionType"
-    },
-    "configuration": {
-      "$ref": "#/$defs/CfConfiguration"
+    "geo": {
+      "$ref": "#/$defs/GeoZarrExtension_CfConfiguration_"
     }
   },
   "required": [
-    "name",
-    "configuration"
+    "geo"
   ],
-  "title": "GeoZarrExtension[CfConfiguration]",
+  "title": "GeoZarrGroup[CfConfiguration]",
   "type": "object"
 }
