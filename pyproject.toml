@@ -17,6 +17,7 @@ dependencies = [
     "geojson-pydantic (>=2.0.0,<3.0.0)",
     "dask (>=2025.5.1,<2026.0.0)",
     "async-tiff (>=0.1.0,<0.2.0)",
+    "pydantic-zarr @ git+https://github.com/zarr-developers/pydantic-zarr",
 ]
 
 [tool.poetry]

@@ -1,5 +1,137 @@
 {
   "$defs": {
+    "ArraySpec": {
+      "additionalProperties": false,
+      "description": "A model of a Zarr Version 3 Array.\n\nAttributes\n----------\n\nnode_type: Literal['array']\n    The node type. Must be the string 'array'.\nattributes: TAttr\n    User-defined metadata associated with this array.\nshape: Sequence[int]\n    The shape of this array.\ndata_type: str\n    The data type of this array.\nchunk_grid: NamedConfig\n    A `NamedConfig` object defining the chunk shape of this array.\nchunk_key_encoding: NamedConfig\n    A `NamedConfig` object defining the chunk_key_encoding for the array.\nfill_value: FillValue\n    The fill value for this array.\ncodecs: Sequence[NamedConfig]\n    The sequence of codices for this array.\nstorage_transformers: Optional[Sequence[NamedConfig]]\n    An optional sequence of `NamedConfig` objects that define the storage\n    transformers for this array.\ndimension_names: Optional[Sequence[str]]\n    An optional sequence of strings that gives names to each axis of the array.",
+      "properties": {
+        "zarr_format": {
+          "const": 3,
+          "default": 3,
+          "title": "Zarr Format",
+          "type": "integer"
+        },
+        "node_type": {
+          "const": "array",
+          "default": "array",
+          "title": "Node Type",
+          "type": "string"
+        },
+        "attributes": {
+          "additionalProperties": true,
+          "default": {},
+          "title": "Attributes",
+          "type": "object"
+        },
+        "shape": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Shape",
+          "type": "array"
+        },
+        "data_type": {
+          "title": "Data Type",
+          "type": "string"
+        },
+        "chunk_grid": {
+          "$ref": "#/$defs/NamedConfig"
+        },
+        "chunk_key_encoding": {
+          "$ref": "#/$defs/NamedConfig"
+        },
+        "fill_value": {
+          "anyOf": [
+            {
+              "enum": [
+                "Infinity",
+                "-Infinity",
+                "NaN"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            }
+          ],
+          "title": "Fill Value"
+        },
+        "codecs": {
+          "items": {
+            "$ref": "#/$defs/NamedConfig"
+          },
+          "title": "Codecs",
+          "type": "array"
+        },
+        "storage_transformers": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/NamedConfig"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Storage Transformers"
+        },
+        "dimension_names": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Dimension Names"
+        }
+      },
+      "required": [
+        "shape",
+        "data_type",
+        "chunk_grid",
+        "chunk_key_encoding",
+        "fill_value",
+        "codecs",
+        "dimension_names"
+      ],
+      "title": "ArraySpec",
+      "type": "object"
+    },
     "GdalConfiguration": {
       "properties": {
         "band_names": {
@@ -53,6 +185,22 @@
       "title": "GeoZarrExtensionType",
       "type": "string"
     },
+    "GeoZarrExtension_GdalConfiguration_": {
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/GeoZarrExtensionType"
+        },
+        "configuration": {
+          "$ref": "#/$defs/GdalConfiguration"
+        }
+      },
+      "required": [
+        "name",
+        "configuration"
+      ],
+      "title": "GeoZarrExtension[GdalConfiguration]",
+      "type": "object"
+    },
     "GroupLayout": {
       "enum": [
         "planar",
@@ -60,20 +208,118 @@
       ],
       "title": "GroupLayout",
       "type": "string"
+    },
+    "GroupSpec": {
+      "additionalProperties": false,
+      "description": "A model of a Zarr Version 3 Group.\n\nAttributes\n----------\n\nnode_type: Literal['group']\n    The type of this node. Must be the string \"group\".\nattributes: TAttr\n    The user-defined attributes of this group.\nmembers: dict[str, TItem]\n    The members of this group. `members` is a dict with string keys and values that\n    must inherit from either ArraySpec or GroupSpec.",
+      "properties": {
+        "zarr_format": {
+          "const": 3,
+          "default": 3,
+          "title": "Zarr Format",
+          "type": "integer"
+        },
+        "node_type": {
+          "const": "group",
+          "default": "group",
+          "title": "Node Type",
+          "type": "string"
+        },
+        "attributes": {
+          "additionalProperties": true,
+          "default": {},
+          "title": "Attributes",
+          "type": "object"
+        },
+        "members": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/GroupSpec"
+              },
+              {
+                "$ref": "#/$defs/ArraySpec"
+              }
+            ]
+          },
+          "default": {},
+          "title": "Members",
+          "type": "object"
+        }
+      },
+      "title": "GroupSpec",
+      "type": "object"
+    },
+    "NamedConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "configuration": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Configuration"
+        }
+      },
+      "required": [
+        "name",
+        "configuration"
+      ],
+      "title": "NamedConfig",
+      "type": "object"
     }
   },
+  "additionalProperties": false,
   "properties": {
-    "name": {
-      "$ref": "#/$defs/GeoZarrExtensionType"
+    "zarr_format": {
+      "const": 3,
+      "default": 3,
+      "title": "Zarr Format",
+      "type": "integer"
     },
-    "configuration": {
-      "$ref": "#/$defs/GdalConfiguration"
+    "node_type": {
+      "const": "group",
+      "default": "group",
+      "title": "Node Type",
+      "type": "string"
+    },
+    "attributes": {
+      "additionalProperties": true,
+      "default": {},
+      "title": "Attributes",
+      "type": "object"
+    },
+    "members": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/GroupSpec"
+          },
+          {
+            "$ref": "#/$defs/ArraySpec"
+          }
+        ]
+      },
+      "default": {},
+      "title": "Members",
+      "type": "object"
+    },
+    "geo": {
+      "$ref": "#/$defs/GeoZarrExtension_GdalConfiguration_"
     }
   },
   "required": [
-    "name",
-    "configuration"
+    "geo"
   ],
-  "title": "GeoZarrExtension[GdalConfiguration]",
+  "title": "GeoZarrGroup[dict[str, Any], Union[ForwardRef('GroupSpec'), ForwardRef('ArraySpec')], GdalConfiguration]",
   "type": "object"
 }

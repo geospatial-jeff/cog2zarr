@@ -3,9 +3,11 @@ from pathlib import Path
 
 import click
 import pystac_client
+from pydantic_zarr.v3 import TAttr, TItem
 
 from cog_to_zarr import cog_to_zarr
 from cog_to_zarr.types import (
+    GeoZarrGroup,
     CfConfiguration,
     GdalConfiguration,
     GeoTiffConfiguration,
@@ -35,7 +37,8 @@ def create_json_schema(outdir: Path):
         GeoZarrExtensionType.geotiff: GeoTiffConfiguration,
     }
     for name, config in configs.items():
-        json_schema = GeoZarrExtension[config].model_json_schema()
+        json_schema = GeoZarrGroup[TAttr.__bound__, TItem.__bound__, config].model_json_schema()
+        
         with open(outdir / f"{name.value}.json", "w") as outf:
             json.dump(json_schema, outf, indent=2)
 
