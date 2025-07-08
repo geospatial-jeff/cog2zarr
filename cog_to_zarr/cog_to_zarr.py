@@ -211,6 +211,7 @@ def _pick_geo_extension(
         case _:
             raise ValueError("Unrecognized extension type")
 
+
 def convert(
     item: pystac.Item,
     store_path: Path,
